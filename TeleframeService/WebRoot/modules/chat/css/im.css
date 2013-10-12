@@ -1,0 +1,401 @@
+body {
+  padding:0px;
+  margin:0px;
+  top:0px;
+  left:0px;
+  border:none;
+  font-size:12px;
+  color:#008;
+  background:#fff url("../images/bg-line.jpg") repeat-x;
+}
+
+#feature {
+  position:absolute;
+  left:15%;
+  top:100px;
+  color:white;
+  font-size:14px;
+  line-height:1.5em;
+}
+
+.sign {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  width: 274px;
+  height: 378px;
+  overflow: hidden;
+  display: none;
+  padding: 5px;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/sign_bg.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.header {
+    padding-top: 12px;
+    margin: 0 auto;
+}
+
+.site-logo {
+    text-align:center;
+    line-height: 84px;
+    height: 48px;
+    width: 159px;
+    overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/logo.gif");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.loading{
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/loading-24.gif");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.sign_logo {
+  width: 160px;
+  height: 39px;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/sign_logo.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.sign_logo_ie6 {
+  width: 160px;
+  height: 39px;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="../images/sign_logo.png");
+}
+
+.sign_span {
+  width: 30px;
+}
+
+.sign_input {
+  border: 1px solid #999;
+  background-image:url("../images/input-bg.gif");
+  font-size: 12px;
+  height: 14px;
+  line-height: 14px;
+  padding: 4px;
+  margin: 0px;
+}
+
+.sign_error {
+  font-size: 14px;
+  color: red;
+}
+
+.sign_btn {
+  border: none;
+  width: 80px;
+  height: 26px;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/button-bg.gif");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+
+.sign_btn:hover {
+  background-image: url("../images/button-bg-focus.gif");
+}
+
+.small_btn {
+  border: none;
+  width: 58px;
+  height: 26px;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/sign_btn_normal.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.small_btn:hover {
+  background-image: url("../images/sign_btn_hover.png");
+}
+
+.main_icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    color: #515151;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    clear: both;
+}
+
+.install {
+    width: 193px;
+    height: 26px;
+    line-height: 26px;
+    font: "12px 宋体";
+    text-align: center;
+    border: none;
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: transparent;
+    background-image: url("../images/install_normal.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.install:hover {
+    background-image: url("../images/install_hover.jpg");
+}
+
+.install_press {
+    background-image: url("../images/install_press.jpg");
+}
+
+.f14 {
+  font-size: 14px;
+}
+
+td {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.cam_btn {
+  width: 103px;
+  height: 41px;
+  border: none;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/cam_normal.jpg");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.upload_btn {
+  width: 103px;
+  height: 41px;
+  border: none;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/upload_normal.jpg");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.send_btn {
+  font-size: 14px;
+  font-weight: bolder;
+  font-family: "宋体";
+  text-align: left;
+  width: 94px;
+  height: 35px;
+  border: none;
+  overflow: hidden;
+  -moz-background-clip: border;
+  -moz-background-origin: padding;
+  -moz-background-size: auto auto;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: url("../images/send.jpg");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.send_btn:hover {
+  background-image: url("../images/send_hover.jpg");
+}
+
+.edit_input {
+  padding: 2px;
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+
+.edit_input:hover {
+  padding: 1px;
+  border: 1px solid blue;
+  background-image:url("../images/hint-bg-2.gif");
+}
+
+.menu {
+  padding:2px;
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+
+.menu:hover {
+  cursor: pointer;
+  padding: 1px;
+  border: 1px solid blue;
+  background-image:url("../images/hint-bg-3.gif");
+}
+
+.small_face {
+  float: left;
+  width: 28px;
+  height: 28px;
+  border: 1px solid yellow;
+}
+
+.small_face:hover {
+  border:1px solid blue;
+  cursor: pointer;
+}
+
+.app_btn_wrapper {
+  /* color: white; */
+  cursor: pointer;
+  font-size: 12px;
+  height: 60px;
+  overflow: hidden;
+  width: 60px;
+  background-image: url("../images/appbar_bg.png");
+}
+
+.app_btn_wrapper:hover {
+  background-attachment: scroll;
+  background-color: transparent;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-image: url("../images/appbar_mouseover_bg.png");
+}
+
+.app_btn {
+  position: absolute;
+  left: 14px;
+  top: 3px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 32px;
+  width: 32px;
+}
+
+.app_text {
+  position: absolute;
+  bottom: 0px;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+.td_nick {
+  width: 20%;
+}
+
+.td_username {
+  width: 20%;
+}
+
+.td_location {
+  width: 20%;
+}
+
+.td_relation {
+  width: 20%;
+}
+
+.td_oper {
+  width: 20%;
+}
+
+.app_btn_wrapper_ie6 {
+  cursor: pointer;
+  font-size: 12px;
+  height: 60px;
+  overflow: hidden;
+  width: 60px;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="../images/appbar_bg.png");
+}
+
+.site_title{
+  position:absolute;
+  left:20px;
+  top:10px;
+  width:192px;
+  height:64px;
+  background:url("../images/title.png");
+}
+.site_title_ie6 {
+  position:absolute;
+  left:20px;
+  top:10px;
+  width:192px;
+  height:64px;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="../images/title.png");
+}

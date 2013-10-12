@@ -1,0 +1,54 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="TitleBarBkgStyle" parent="android:Theme"></style>
+
+    <!-- 复选框样式 -->
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
+    <style name="item_bg_base_layout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">10.0dip</item>
+        <item name="android:paddingBottom">10.0dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="item_bg_top_layout" parent="@style/item_bg_base_layout">
+        <item name="android:background">@drawable/item_bg_top_selector</item>
+    </style>
+
+    <style name="item_bg_mid_layout" parent="@style/item_bg_base_layout">
+        <item name="android:background">@drawable/item_bg_middle_selector</item>
+    </style>
+
+    <style name="item_bg_bottom_layout" parent="@style/item_bg_base_layout">
+        <item name="android:background">@drawable/item_bg_bottom_selector</item>
+    </style>
+
+    <style name="item_bg_single_layout" parent="@style/item_bg_base_layout">
+        <item name="android:background">@drawable/item_bg_single_selector</item>
+    </style>
+
+</resources>

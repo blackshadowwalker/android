@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--  constant name="struts.devMode" value="true" /-->
+	<package name="default"  extends="struts-default"  namespace="/">
+		
+		<default-action-ref name="notFound" />
+		
+	    <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+        
+		<action name="notFound">
+		     <result>/error/error.jsp</result>
+    	 </action>
+
+		<action name="listUser" method="list" class="com.action.UserAction">
+			<result name="success">/register.jsp</result>
+		</action>
+		
+	</package>
+</struts>    

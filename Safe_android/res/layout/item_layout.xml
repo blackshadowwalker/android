@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- listview的item选项 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/item_logo"
+        android:contentDescription="@string/item_logo"
+        android:text="@string/content_title"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@id/item_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="6dp"
+        android:layout_toRightOf="@id/item_icon"
+        android:adjustViewBounds="true"
+        android:background="@drawable/btntop"
+        android:contentDescription="@string/item_logo"
+        android:cropToPadding="true"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp"
+        android:scaleType="fitCenter"
+        android:text="@string/content_title" />
+
+    <TextView
+        android:id="@+id/tx1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_icon"
+        android:layout_below="@id/content_title"
+        android:layout_toRightOf="@id/img"
+        android:layout_marginTop="-1dp"
+        android:text="时间："
+        android:textColor="#3366CC"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tx1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_icon"
+        android:layout_below="@id/content_title"
+        android:layout_toRightOf="@id/tx1_text"
+        android:text="2013-10-03 16:12:52.0"
+        android:textColor="#003366"
+        android:textSize="13sp" />
+    <TextView
+        android:id="@+id/prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_icon"
+        android:layout_marginLeft="3dp"
+        android:layout_below="@id/content_title"
+        android:layout_toRightOf="@id/tx1"
+        android:text="新"
+        android:textColor="#CC0033"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tx2_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tx1_text"
+        android:layout_below="@id/tx1"
+        android:layout_toRightOf="@id/img"
+        android:text="车牌号："
+        android:textColor="#3366CC"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tx2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tx1"
+        android:layout_toRightOf="@id/tx2_text"
+        android:text="京AB0002"
+        android:textColor="#003366"
+        android:textSize="13sp" />
+    <TextView
+        android:id="@+id/tx3_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tx1_text"
+        android:layout_below="@id/tx2_text"
+        android:layout_toRightOf="@id/img"
+        android:text="地点："
+        android:textColor="#3366CC"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tx3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tx2_text"
+        android:layout_toRightOf="@id/tx3_text"
+        android:text="小区"
+        android:textColor="#003366"
+        android:textSize="13sp" />
+    <TextView
+        android:id="@+id/tx4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tx2_text"
+        android:layout_toRightOf="@id/tx3"
+        android:layout_marginLeft="10dp"
+        android:text="进"
+        android:textColor="#FFA500"
+        android:textSize="12sp" />
+    
+
+</RelativeLayout>

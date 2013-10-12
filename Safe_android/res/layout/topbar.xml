@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/head"
+    android:layout_width="fill_parent"
+    android:layout_height="50dip"
+    android:background="@drawable/top" >
+
+    <!-- 取消按钮 -->
+
+    <Button
+        android:id="@+id/button_left"
+        android:layout_width="66dip"
+        android:layout_height="33dip"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/btntop"
+        android:gravity="center"
+        android:text="返回"
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button_right"
+        android:layout_width="66dip"
+        android:layout_height="33dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btntop"
+        android:gravity="center"
+        android:text="设置"
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
+
+</RelativeLayout>

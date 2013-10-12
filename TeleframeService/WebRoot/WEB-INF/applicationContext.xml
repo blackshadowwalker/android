@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+	<bean id="mappings" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">   
+     	<property name="locations" value="classpath:jdbc.properties"></property>   
+    </bean>   
+     
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+	<bean id="sqlite" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${sqlite.jdbc.driverClassName}"></property>
+		<property name="url" value="jdbc:sqlite://${webapp.root}/WEB-INF/${sqlite.jdbc.url}"></property>
+		<property name="username" value="${sqlite.jdbc.username}"></property>
+		<property name="password" value="${sqlite.jdbc.password}"></property>
+	</bean>
+	
+	
+</beans>

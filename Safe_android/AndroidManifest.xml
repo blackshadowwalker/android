@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cxf.safe_android"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name="com.cxf.entity.MyAplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo_lc"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- 主界面 -->
+        <activity
+            android:name="com.cxf.safe_android.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <!-- 欢迎界面 -->
+        <activity
+            android:name="com.cxf.safe_android.WelcomeActivity"
+            android:configChanges="keyboardHidden"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 登录界面 -->
+        <activity
+            android:name="com.cxf.safe_android.LoginActivity"
+            android:label="@string/login"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Animation.Dialog" >
+        </activity>
+        <!-- 车辆设置 -->
+        <activity
+            android:name="com.cxf.safe_android.Car_alarm_setting_activity"
+            android:launchMode="standard"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <!-- 安全保卫告警设置 -->
+        <activity
+            android:name="com.cxf.safe_android.Security_alarm_setting_activity"
+            android:launchMode="standard"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <!-- 安全保卫详情界面 -->
+        <activity
+            android:name="com.cxf.safe_android.Security_detail_activity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <!-- 车辆告警详情界面 -->
+        <activity
+            android:name="com.cxf.safe_android.Car_Guard_detail_activity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <!-- 后台服务 -->
+        <service
+            android:name="com.cxf.service.RefreshDataService"
+          >
+            <intent-filter>
+                <action android:name="REFRESH_DATA" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/topbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/activity_vertical_margin" 
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+       
+        <TextView
+            android:id="@+id/tx1_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-1dp"
+            android:text="@string/absTime"
+            android:textColor="#3366CC"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/absTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tx1_text"
+            android:textColor="#003366"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tx2_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tx1_text"
+            android:layout_below="@id/absTime"
+            android:text="@string/location"
+            android:textColor="#3366CC"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/absTime"
+            android:layout_toRightOf="@id/tx2_text"
+            android:textColor="#003366"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tx3_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tx1_text"
+            android:layout_below="@id/tx2_text"
+            android:text="@string/LPNumber"
+            android:textColor="#3366CC"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tx2_text"
+            android:layout_toRightOf="@id/tx3_text"
+            android:textColor="#003366"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tx4_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tx1_text"
+            android:layout_below="@id/tx3_text"
+            android:text="@string/dir"
+            android:textColor="#3366CC"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/direction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tx3_text"
+            android:layout_toRightOf="@id/tx4_text"
+            android:textColor="#003366"
+            android:textSize="13sp" />
+
+       
+
+         <ImageView
+            android:id="@+id/shortImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/direction"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/btntop"
+            android:contentDescription="@string/item_logo"
+            android:cropToPadding="true"
+            android:scaleType="fitCenter"
+            android:text="@string/content_title" />
+        
+    </RelativeLayout>
+
+</LinearLayout>

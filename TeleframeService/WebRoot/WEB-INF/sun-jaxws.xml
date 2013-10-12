@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+	version="2.0">
+	
+    <endpoint name="TelframeService" implementation="com.services.Impl.ServiceMgrImpl"
+		url-pattern="/service/TelframeService" />
+
+	<endpoint name="UserEndpointService" implementation="com.services.Impl.UserEndpointImpl"
+		url-pattern="/service/UserEndpointService" />
+	
+	<endpoint name="ITSMonitorEndpointService" implementation="com.services.Impl.ITSMonitorEndpointImpl"
+		url-pattern="/service/ITSMonitorEndpointService" />
+	
+	<endpoint name="SPSMonitorEndpointService" implementation="com.services.Impl.SPSMonitorEndpointImpl"
+		url-pattern="/service/SPSMonitorEndpointService" />
+
+</endpoints>  
