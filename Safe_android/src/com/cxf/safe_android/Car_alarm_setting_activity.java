@@ -38,7 +38,7 @@ public class Car_alarm_setting_activity extends Activity implements
 		this.receiveCarInCheckbox.setOnCheckedChangeListener(this);
 		this.receiveCarOutCheckbox.setOnCheckedChangeListener(this);
 
-		sp = getSharedPreferences("car_alarm_setting", 0);
+		sp = getSharedPreferences("sys_setting", 0);
 	}
 
 	@Override
@@ -47,6 +47,7 @@ public class Car_alarm_setting_activity extends Activity implements
 		init();
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
@@ -57,12 +58,37 @@ public class Car_alarm_setting_activity extends Activity implements
 				Editor edit = sp.edit();
 				edit.putBoolean("receive_car_in", isChecked);
 				edit.commit();
+
+				if (isChecked == true && !sp.getBoolean("recieve_infos", false)) {
+					Editor sysEditor = sp.edit();
+					sysEditor.putBoolean("recieve_infos", true);
+					sysEditor.commit();
+				}
+				if (isChecked = false
+						&& sp.getBoolean("receive_car_out", false)
+						&& sp.getBoolean("receive_security_alarm", false)) {
+					Editor sysEditor = sp.edit();
+					sysEditor.putBoolean("recieve_infos", false);
+					sysEditor.commit();
+				}
 			}
 			break;
 		case R.id.opt1_car_out:
 			Editor edit = sp.edit();
 			edit.putBoolean("receive_car_out", isChecked);
 			edit.commit();
+			if (isChecked == true && !sp.getBoolean("recieve_infos", false)) {
+				Editor sysEditor = sp.edit();
+				sysEditor.putBoolean("recieve_infos", true);
+				sysEditor.commit();
+			}
+			if (isChecked = false && sp.getBoolean("receive_car_in", false)
+					&& sp.getBoolean("receive_security_alarm", false)) {
+				Editor sysEditor = sp.edit();
+				sysEditor.putBoolean("recieve_infos", false);
+				sysEditor.commit();
+			}
+
 			break;
 
 		default:
@@ -72,9 +98,9 @@ public class Car_alarm_setting_activity extends Activity implements
 
 	public void init() {
 		this.receiveCarInCheckbox.setChecked(sp.getBoolean("receive_car_in",
-				false));
+				true));
 		this.receiveCarOutCheckbox.setChecked(sp.getBoolean("receive_car_out",
-				false));
+				true));
 	}
 
 	@Override

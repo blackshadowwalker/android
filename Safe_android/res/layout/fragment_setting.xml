@@ -42,12 +42,12 @@
                     android:gravity="center_vertical"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
-                    android:text="@string/save_login_info"
+                    android:text="@string/auto_login_info"
                     android:textColor="#ff333333"
                     android:textSize="12.0dip" />
 
                 <CheckBox
-                    android:id="@+id/opt1"
+                    android:id="@+id/keep_info"
                     style="@style/CustomCheckboxTheme"
                     android:layout_width="30dp"
                     android:layout_height="30dp"

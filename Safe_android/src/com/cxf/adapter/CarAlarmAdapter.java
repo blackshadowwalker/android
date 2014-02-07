@@ -3,9 +3,13 @@ package com.cxf.adapter;
 import java.util.List;
 
 import com.cxf.entity.CarAlarm;
+import com.cxf.handler.ImageLoadHandler;
 import com.cxf.safe_android.R;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +26,7 @@ public class CarAlarmAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	// 资源文件
 	private int layoutId;
+	final int stub_id = R.drawable.item_logo;
 
 	public CarAlarmAdapter(Context context, List<CarAlarm> list) {
 		super();
@@ -147,5 +152,8 @@ public class CarAlarmAdapter extends BaseAdapter {
 		}
 
 	}
+	
+	
+	
 
 }

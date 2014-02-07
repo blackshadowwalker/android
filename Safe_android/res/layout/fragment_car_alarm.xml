@@ -8,4 +8,6 @@
 
     <include layout="@layout/content" />
 
+    <include layout="@layout/pull_to_refresh" />
+    
 </LinearLayout>

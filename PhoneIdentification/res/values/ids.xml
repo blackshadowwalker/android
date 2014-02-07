@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item type="id" name="gps"></item>
+    <item type="id" name="wifi"></item>
+    <item type="id" name="tel"></item>
+    <item type="id" name="net"></item>
+     <item type="id" name="next"></item>
+
+</resources>

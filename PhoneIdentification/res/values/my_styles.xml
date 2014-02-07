@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 该文件被放置在res/values/目录下 -->
+<resources>
+
+    <!-- 声明属性 -->
+    <declare-styleable name="autoview">
+        <attr name="my_hint" format="string" />
+    </declare-styleable>
+
+</resources>

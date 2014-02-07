@@ -8,6 +8,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1";/>
     
     <title>My JSP 'index.jsp' starting page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		 <div class="hero-unit">
 	        <p>
-			    <a href="user/list" target=""  class="btn btn-primary btn-large" >list users</span></a>
+			    <a href="modules/user/list2.jsp" target=""  class="btn btn-primary btn-large" >list users</span></a>
+			    
 		    	<span onclick="AutoAddUsers()"  class="btn btn-primary btn-large" >Auto add users</span>
 		    </p>
 		    <p id="ret">

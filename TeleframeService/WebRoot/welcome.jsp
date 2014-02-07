@@ -9,12 +9,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Carousel Template &middot; Bootstrap</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1";/>
     <meta name="description" content="">
     <meta name="author" content="">
 	
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<!-- bootstrap -->
 	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -28,8 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <body>
 
-    <!-- NAVBAR
-    ================================================== -->
+    <!-- NAVBAR================================== -->
      <%@ include file="nav.jsp" %>
      
 

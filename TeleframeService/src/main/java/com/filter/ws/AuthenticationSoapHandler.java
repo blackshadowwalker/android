@@ -1,5 +1,8 @@
 package com.filter.ws;
 
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.jms.Session;
@@ -33,6 +36,21 @@ public class AuthenticationSoapHandler implements SOAPHandler<SOAPMessageContext
 		HttpServletRequest request = (HttpServletRequest)context.get(MessageContext.SERVLET_REQUEST); 
 		HttpSession session = request.getSession();
 		System.out.println("session="+session.getId());
+		String ip = request.getRemoteAddr();
+		System.out.println("ip="+ip);
+		Enumeration en = request.getParameterNames();
+		while (en.hasMoreElements()) {
+
+		String paramName = (String) en.nextElement();
+			System.out.println(paramName + " = " + request.getParameter(paramName) + "<br/>");
+
+		}
+		System.out.println("ssid="+  request.getParameter("ssid") );
+	//	List st = (List) context.get(context.HTTP_REQUEST_METHOD);
+	//	for(int i=0; i<st.size(); i++)
+		System.out.println("method: " +context.get(MessageContext.HTTP_REQUEST_METHOD));
+		if(true)
+			return true;
 		
 		Boolean isRequest = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		String username = "";

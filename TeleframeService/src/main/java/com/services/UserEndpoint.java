@@ -15,7 +15,7 @@ import com.services.base.DatabaseTool;
 @SOAPBinding(style = Style.RPC)
 public interface  UserEndpoint  {
 	
-	public String	checkUser(String username, String password);
+	public String	login(String username, String password);
 	public String 	listUser(String ssid);
 	public String	logoff(String ssid);
 

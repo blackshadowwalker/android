@@ -11,6 +11,15 @@ public class UserForm {
 	private long lastAccessTime=0;
 	private long lastLoginTime=0;
 	private String IP ="";
+	private String lastAccessIp="";
+	
+	
+	public String getLastAccessIp() {
+		return lastAccessIp;
+	}
+	public void setLastAccessIp(String lastAccessIp) {
+		this.lastAccessIp = lastAccessIp;
+	}
 	private String lastIP="";
 	
 	public long getId() {

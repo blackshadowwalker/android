@@ -1,27 +1,25 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@taglib uri="/struts-tags" prefix="s"%>
 <%
 String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String baseServer = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+String basePath = baseServer + path+"/";
 %>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Carousel Template &middot; Bootstrap</title>
+    <title>Download Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1";/>
     <meta name="description" content="">
     <meta name="author" content="">
 	
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<!-- bootstrap -->
 	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
-    <![endif]-->
+
     <link href="css/home.css" rel="stylesheet" >
 
   </head>
@@ -46,31 +44,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <h1>Hello, Android !</h1>
         <p>This is Teleframe Android Download Center. </p>
         <p><a href="/download-center/apk/its_sps.apk" id=learnmore class="btn btn-primary btn-large" style="width:250px;">
-        	Download ITS&SPS.apk </a></p>
-        <p><a href="/download-center/apk/weixin50android.apk" id=learnmore class="btn btn-primary btn-large" style="width:250px;">
-        	weixin50android.apk </a></p>
+        	核工业安防保卫系统 </a></p>
+        <p><a href="/download-center/apk/tfMobileAuth.apk" id=learnmore class="btn btn-primary btn-large" style="width:250px;">
+        	金融认证系统 </a></p>
+        <p><a href="/download-center/apk/TeleframeVLPR.apk" id=learnmore class="btn btn-primary btn-large" style="width:250px;">
+        	手机车牌识别 </a></p>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span5">
-          <h2>ITS & SPS</h2>
-          <p>Intelligent Transport System  and Security & Protection System.</p>
-          
+        <div class="span4">
+          <h2>核工业安防保卫系统</h2>
+          <p></p>
           <p>
-          	<img src="images/qr/download_its_sps.png" class="img-rounded" style="width:200px;height:200px;">
+          	<img src="qrservice?text=<%=baseServer %>/download-center/apk/its_sps.apk" 
+          		class="img-rounded" style="width:240px;height:240px;">
+          	<br/>
           	<a href="/download-center/apk/its_sps.apk" class="btn btn-info btn-large" >Download</a>
           </p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
-        <div class="span3">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <div class="span4">
+          <h2>金融认证系统</h2>
+         <p></p>
+          <p>
+          	<img src="qrservice?text=<%=baseServer %>/download-center/apk/tfMobileAuth.apk" 
+          		class="img-rounded" style="width:240px;height:240px;">
+          	<br/>
+          	<a href="/download-center/apk/tfMobileAuth.apk" class="btn btn-info btn-large" >Download</a>
+          </p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
        </div>
         <div class="span3">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <h2>手机车牌识别</h2>
+          <p></p>
+          <p>
+          	<img src="qrservice?text=<%=baseServer %>/download-center/apk/TeleframeVLPR.apk" 
+          		class="img-rounded" style="width:240px;height:240px;">
+          	<br/>
+          	<a href="/download-center/apk/TeleframeVLPR.apk" class="btn btn-info btn-large" >Download</a>
+          </p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
       </div>

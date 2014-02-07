@@ -2,6 +2,7 @@ package com.cxf.handler;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.SoapEnvelope;
@@ -9,9 +10,14 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.Message;
+
 import com.cxf.entity.CarAlarm;
+import com.cxf.entity.Constant;
 
 public class CarGuardHandler extends Handler {
 
@@ -20,19 +26,25 @@ public class CarGuardHandler extends Handler {
 	// 数据集合
 	List<CarAlarm> list;
 	public static String ssid;
+	SharedPreferences sp;
+	final int OK = 0;
+	final int ERROR = -1;
 
 	public CarGuardHandler(Context context) {
 		super();
 		this.context = context;
+		sp = context.getSharedPreferences("sys_setting", 0);
+
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<CarAlarm> requestCarAlarms(String ssid, int reqLines, int dir) {
 		List<CarAlarm> list = null;
-
-		String namespace = "http://webservice.teleframe.com";
-		String methoName = "getWarning";
-		String url = "http://10.168.1.250:8888/TeleframeService/service/ITSMonitorEndpointService?wsdl";
+		String host = sp.getString("host", "");
+		Constant.init(host);
+		String namespace = Constant.NAMESPACE;
+		String methoName = Constant.CAR_GUARD_METHOD_GETWARNING;
+		String url = Constant.CAR_GUARD_URL;
 
 		SoapObject soapObject = new SoapObject(namespace, methoName);
 		soapObject.addProperty("ssid", ssid);
@@ -57,8 +69,9 @@ public class CarGuardHandler extends Handler {
 			if (error == 0 && "OK".equals(msg)) {
 				String dataStr = jsonuser.getString("data");
 				if (!("".equals(dataStr))) {
-					list = FromJsonToClassConverter.toList(dataStr,
-							CarAlarm.class);
+					FromJsonToClassConverter tool = new FromJsonToClassConverter(
+							context);
+					list = tool.toList(dataStr, CarAlarm.class);
 					// 获得请求的字符串
 					System.out.println(dataStr);
 				}
@@ -82,10 +95,11 @@ public class CarGuardHandler extends Handler {
 	}
 
 	public long received(String ssid, long id) {
-
-		String namespace = "http://webservice.teleframe.com";
-		String methoName = "Received";
-		String url = "http://10.168.1.250:8888/TeleframeService/service/ITSMonitorEndpointService?wsdl";
+		String host = sp.getString("host", "");
+		Constant.init(host);
+		String namespace = Constant.NAMESPACE;
+		String methoName = Constant.CAR_GUARD_METHOD_RECEIVED;
+		String url = Constant.CAR_GUARD_URL;
 
 		SoapObject soapObject = new SoapObject(namespace, methoName);
 		soapObject.addProperty("ssid", ssid);
@@ -110,12 +124,14 @@ public class CarGuardHandler extends Handler {
 		return id;
 	}
 
+	
 	public int receiveds(String ssid, String jsonIds) {
-
+		String host = sp.getString("host", "");
+		Constant.init(host);
 		int returnCode = 0;
-		String namespace = "http://webservice.teleframe.com";
-		String methoName = "Receiveds";
-		String url = "http://10.168.1.250:8888/TeleframeService/service/ITSMonitorEndpointService?wsdl";
+		String namespace = Constant.NAMESPACE;
+		String methoName = Constant.CAR_GUARD_METHOD_RECEIVEDS;
+		String url = Constant.CAR_GUARD_URL;
 
 		SoapObject soapObject = new SoapObject(namespace, methoName);
 		soapObject.addProperty("ssid", ssid);
@@ -140,18 +156,17 @@ public class CarGuardHandler extends Handler {
 		}
 		return returnCode;
 	}
-	
-	public String idsJson(List<CarAlarm> list)
-	{
-		StringBuilder sb=new StringBuilder();
+
+	public String idsJson(List<CarAlarm> list) {
+		String host = sp.getString("host", "");
+		Constant.init(host);
+		StringBuilder sb = new StringBuilder();
 		sb.append("[");
-		for(int i=0;list.size()>0&&i<list.size();i++)
-		{
-			if(i>0&&i<=list.size()-1)
-			{sb.append(",{\"id\":\""+list.get(i).id+"\"}");	}
-			else
-			{
-				sb.append("{\"id\":\""+list.get(i).id+"\"}");
+		for (int i = 0; list.size() > 0 && i < list.size(); i++) {
+			if (i > 0 && i <= list.size() - 1) {
+				sb.append(",{\"id\":\"" + list.get(i).id + "\"}");
+			} else {
+				sb.append("{\"id\":\"" + list.get(i).id + "\"}");
 			}
 		}
 		sb.append("]");

@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="rdo1">0dp</dimen>
+
+    <!-- 标题 -->
+    <dimen name="text_title">17sp</dimen>
+    <!-- 内容 -->
+    <dimen name="text_content">15sp</dimen>
+    <dimen name="text_content_small">12sp</dimen>
+    <!-- 回显消息 -->
+    <dimen name="feedback_text">12sp</dimen>
+    <!-- 布局边距 -->
+    <dimen name="margin_top">15dp</dimen>
+    <dimen name="margin_bottom">15dp</dimen>
+    <dimen name="margin_right">15dp</dimen>
+    <dimen name="margin_left">15dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">18dp</dimen>
+    <dimen name="layout_margin_top">30dp</dimen>
+    <dimen name="editor_hight">35dp</dimen>
+    <dimen name="button_button_margin_top">8dp</dimen>
+    <dimen name="button_button_margin_bottom">15dp</dimen>
+    <dimen name="button_editor_margin">25dp</dimen>
+    <dimen name="button_pading">5dp</dimen>
+
+</resources>

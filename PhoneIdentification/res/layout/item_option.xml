@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="40dp" >
+
+    <ImageView
+        android:id="@+id/delImage"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:cropToPadding="true"
+        android:gravity="center"
+        android:maxHeight="35dp"
+        android:maxWidth="35dp"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/item_logo" />
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/delImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/delImage"
+        android:layout_toLeftOf="@id/delImage"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:textColor="#ffffff" >
+    </TextView>
+
+</RelativeLayout>

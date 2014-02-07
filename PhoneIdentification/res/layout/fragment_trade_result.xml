@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/DefaultStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_logo"
+        android:cropToPadding="true"
+        android:maxHeight="120dp"
+        android:maxWidth="120dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_lc" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:paddingBottom="1dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="1dp"
+        android:text="@string/trade_sucess"
+        android:textColor="@color/content_bg"
+        android:textSize="17sp" />
+    <!--
+        <include
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        layout="@layout/bottombar" />
+    -->
+
+</RelativeLayout>

@@ -7,7 +7,7 @@
 
 
 	<bean id="mappings" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">   
-     	<property name="locations" value="classpath:jdbc.properties"></property>   
+     	<property name="location" value="classpath:../jdbc.properties"></property>   
     </bean>   
      
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">

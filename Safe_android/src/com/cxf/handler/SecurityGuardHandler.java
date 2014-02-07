@@ -11,9 +11,10 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 import com.cxf.entity.CarAlarm;
+import com.cxf.entity.Constant;
 import com.cxf.entity.SecurityAlarm;
-
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,20 +25,24 @@ public class SecurityGuardHandler extends Handler {
 	Context context;
 	// 数据集合
 	List<CarAlarm> list;
-
+	SharedPreferences sp;
 	public SecurityGuardHandler(Context context) {
 		super();
 		this.context = context;
+		sp=context.getSharedPreferences("sys_setting", 0);
+		
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<SecurityAlarm> requestSecurityAlarms(String ssid, int reqLines,
 			int level) {
 		List<SecurityAlarm> list = null;
+		String host=sp.getString("host", "");
+		Constant.init(host);
 
-		String namespace = "http://webservice.teleframe.com";
-		String methoName = "getWarning";
-		String url = "http://10.168.1.250:8888/TeleframeService/service/SPSMonitorEndpointService?wsdl";
+		String namespace = Constant.NAMESPACE;
+		String methoName = Constant.SECURITY_GUARD_METHOD_GETWARNING;
+		String url =Constant.SECURITY_GUARD_URL;
 
 		SoapObject soapObject = new SoapObject(namespace, methoName);
 		soapObject.addProperty("ssid", ssid);
@@ -61,7 +66,8 @@ public class SecurityGuardHandler extends Handler {
 			String msg = jsonuser.getString("msg"); // 与error对应的错误解释
 			if (error == 0 && "OK".equals(msg)) {
 				String dataStr = jsonuser.getString("data");
-				list = FromJsonToClassConverter.toList(dataStr,
+				FromJsonToClassConverter tool=new FromJsonToClassConverter(context);
+				list =tool.toList(dataStr,
 						SecurityAlarm.class);
 				// 获得请求的字符串
 				System.out.println(dataStr);
@@ -92,11 +98,12 @@ public class SecurityGuardHandler extends Handler {
 	}
 
 	public int receiveds(String ssid, String jsonIds) {
-
+		String host=sp.getString("host", "");
+		Constant.init(host);
 		int returnCode = 0;
-		String namespace = "http://webservice.teleframe.com";
-		String methoName = "Receiveds";
-		String url = "http://10.168.1.250:8888/TeleframeService/service/SPSMonitorEndpointService?wsdl";
+		String namespace = Constant.NAMESPACE;
+		String methoName = Constant.SECURITY_GUARD_METHOD_RECEIVEDS;
+		String url =Constant.SECURITY_GUARD_URL;
 
 		SoapObject soapObject = new SoapObject(namespace, methoName);
 		soapObject.addProperty("ssid", ssid);
@@ -135,5 +142,7 @@ public class SecurityGuardHandler extends Handler {
 		sb.append("]");
 		return sb.toString();
 	}
+	
+	
 
 }

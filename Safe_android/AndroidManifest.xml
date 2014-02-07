@@ -4,13 +4,15 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="com.cxf.entity.MyAplication"
@@ -23,6 +25,7 @@
         <activity
             android:name="com.cxf.safe_android.MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <!-- 欢迎界面 -->
@@ -30,7 +33,7 @@
             android:name="com.cxf.safe_android.WelcomeActivity"
             android:configChanges="keyboardHidden"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
@@ -43,35 +46,41 @@
         <activity
             android:name="com.cxf.safe_android.LoginActivity"
             android:label="@string/login"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Animation.Dialog" >
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <!-- 车辆设置 -->
         <activity
             android:name="com.cxf.safe_android.Car_alarm_setting_activity"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <!-- 安全保卫告警设置 -->
         <activity
             android:name="com.cxf.safe_android.Security_alarm_setting_activity"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <!-- 安全保卫详情界面 -->
         <activity
             android:name="com.cxf.safe_android.Security_detail_activity"
+            android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <!-- 车辆告警详情界面 -->
         <activity
             android:name="com.cxf.safe_android.Car_Guard_detail_activity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <!-- 用户详情界面 -->
+        <activity
+            android:name="com.cxf.safe_android.User_detail_activity"
+            android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <!-- 后台服务 -->
-        <service
-            android:name="com.cxf.service.RefreshDataService"
-          >
+        <service android:name="com.cxf.service.RefreshDataService" >
             <intent-filter>
                 <action android:name="REFRESH_DATA" />
             </intent-filter>

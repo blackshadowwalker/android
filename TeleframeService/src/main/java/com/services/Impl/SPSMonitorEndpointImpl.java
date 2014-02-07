@@ -41,7 +41,7 @@ import com.services.base.baseForm;
 	PreparedStatement pstm = null;
 	Connection con = null;
 	ResultSet rs = null;
-	private static String DataTableName = "monitor_event";
+	private static String DataTableName = "af_event";
 	private static String MsgTableName = "t_a_xf_msg";
 
 	public int Received(@WebParam(name = "ssid")String ssid, @WebParam(name = "msgid")long msgid) {
@@ -104,7 +104,7 @@ import com.services.base.baseForm;
 			itsImageRoot = path;
 		
 		UserForm user = UserList.getUser(ssid);
-		if(UserList.checkUser(ssid)==false ){
+		if(UserList.checkUser(ssid, request)==false ){
 			jsonmsg.put("users", UserList.getString());
 			jsonmsg.put("error", ErrorUtil.SSID_NULL);
 			jsonmsg.put("msg", "Please Login @checkUser.");
@@ -132,8 +132,8 @@ import com.services.base.baseForm;
 			pstm.setLong(1, user.getId());
 			rs = pstm.executeQuery();
 
+			String msgids = "";
 			if(rs!=null){
-				String msgids = "";
 				while(rs!=null && rs.next()){
 					msgids += rs.getLong("msgid")+",";
 				}
@@ -180,6 +180,7 @@ import com.services.base.baseForm;
 					}
 				}else{
 					jsonmsg.put("error", ErrorUtil.DATA_NULL);
+					jsonmsg.put("sql", sql+msgids);
 					jsonmsg.put("msg", MsgTableName+" is null @ user 'admin'-->INSERT "+MsgTableName+"(userid, msgid,sended) values(?,0,1)");
 				}	
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 下载名单的按钮按下效果 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/transparent" android:state_window_focused="false"/>
+    <item android:drawable="@color/content_bg"   android:state_selected="true"/>
+    <item android:drawable="@color/transparent"   android:state_selected="false"/>
+
+</selector>

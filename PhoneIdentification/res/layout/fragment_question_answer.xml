@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- listview的item选项 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/answer_question"
+    style="@style/DefaultStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="40dp" >
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_logo"
+        android:cropToPadding="true"
+        android:maxHeight="120dp"
+        android:maxWidth="120dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_lc" />
+
+    <ListView
+        android:id="@+id/question_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:persistentDrawingCache="none" >
+    </ListView>
+
+</RelativeLayout>

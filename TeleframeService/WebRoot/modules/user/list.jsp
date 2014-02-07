@@ -4,26 +4,14 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String ret = (String)request.getAttribute("ret");
-//System.out.println(ret);
-
-JSONObject jsonRet = JSONObject.fromObject(ret);
-long error = jsonRet.getLong("error");
-String msg = jsonRet.getString("msg");
-JSONArray jsonArray=null;
-if(error==0){
-	Object obj = jsonRet.get("data");
-	if(obj instanceof net.sf.json.JSONArray ){
-		jsonArray = (JSONArray) jsonRet.getJSONArray("data");
-	}
-}
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1";/>
     <title>User List Page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
@@ -47,6 +35,13 @@ if(error==0){
 		    padding: 6px 6px 6px 12px;
 		    color: #4f6b72;
 		}
+		a:HOVER {
+		 	color: #00FF00; /*鼠标经过的颜色变化*/
+		}
+		a{
+		 	text-decoration:underline;
+		 	cursor:hand; 
+		}
 		
 	</style>
 
@@ -55,36 +50,14 @@ if(error==0){
   <body>
     <br>
   <center>
-    <%
-  		out.println("<h2>User List</h2>");
-    	if(jsonArray!=null)
-    	{
-	    	out.println("<table border=1>");
-	    	out.println("<tr><td>id</td> ");
-	    	out.println("<td>User Name</td>");
-	    	out.println("<td>User Code</td>");
-	    	out.println("<td>Password</td>");
-	    	out.println("<td>status</td>");
-	    	out.println("<td>Operate</td>");  
-	    	out.println(" </tr>");
-	    	for(int i=0;i<jsonArray.size();i++){  
-	    		out.println("<tr>");
-				JSONObject jsonObject = JSONObject.fromObject(jsonArray.get(i));  
-				out.println("<td >"+jsonObject.getLong("id")+"</td>");  
-				out.println("<td>"+jsonObject.getString("username")+"</td>");  
-				out.println("<td>"+jsonObject.getString("usercode")+"</td>");  
-				out.println("<td>"+jsonObject.getString("password")+"</td>");  
-				out.println("<td>"+jsonObject.getString("status")+"</td>");  
-				out.println("<td><a href='user/list'  onclick=\"deleteUser('"+jsonObject.getString("usercode")+"', this)\" >Delete</a></td>");  
-				out.println("</tr>");				
-			}
-			out.println("</table>");
-		}else
-		{
-			out.println("Error: "+jsonRet.getLong("error")+"["+jsonRet.getString("msg")+"]");
-		}
-    	
-    %>
+    <div id="userlist"> Querying </div>
+    
+    <br>
+    <div style="display:block;">
+		<iframe name="location" style="width:500px;height:40px; border=0px;" 
+			src="http:\/\/int.dpool.sina.com.cn\/iplookup\/iplookup.php?format=text&ip=114.249.229.211" ></iframe>
+	</div>	
+    <div id="userlog"></div>
     
     <script src="jquery/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
@@ -92,10 +65,78 @@ if(error==0){
 		
     <script type="text/javascript">
     
+    	var html = "";
+    	$(document).ready(function(){
+    		// $( "#login" ).draggable();
+    		 $.get("user/list", "" , function(ret){
+    		 	html += "<h2>User List</h2>";
+    			if(ret.error==0){
+    				var obj = ret.data;
+    				
+    				html += "<table border=1 name=listuser>";
+			    	html += "<tr><td>id</td> ";
+			    	html += "<td>User Name</td>";
+			    	html += "<td>User Code</td>";
+			    	html += "<td>Password</td>";
+			    	html += "<td>status</td>";
+			    	html += "<td>Operate</td>";  
+			    	html += " </tr>";
+	    	
+    				$(obj).each(function(index){
+   						var user = obj[index];
+   						html += "<tr id="+user.id+">";
+   						html += "<td >"+user.id+"</td>";  
+   						html += "<td >"+user.username+"</td>";  
+   						html += "<td >"+user.usercode+"</td>";  
+   						html += "<td >"+user.password+"</td>";  
+   						html += "<td >"+user.status+"</td>";  
+   						html += "<td><a href=\"javascript:showlog(\'"+user.usercode+"\');\" >Log</a> <span>&nbsp;&nbsp;</span>";  
+   						html += "<a onclick=\"javascript:deleteUser(\'"+user.usercode+"\', this);\" >Delete</a></td>";  
+   						html += "</tr>";
+   						
+   					});
+   					html += "</table>";
+    			}
+    			else
+    				html = "Error("+ret.error+"): " + ret.msg;
+	    		$("#userlist").html(html);
+    		}, "json" );
+    		 
+    	});
+    	
+    	function showlog(usercode){
+    		
+    		var url = "userlog?usercode="+usercode;
+    		var html= "";
+    		$.get(url, "", function(json){
+    			if(json.error==0){
+    				html ="<table>";
+    				html +="<tr>";
+	   				html +="<th>AccessIp</th>";
+	   				html +="<th>AccessTime</th>";
+	   				html +="</tr>";
+	   				var data = json.data;
+		   			$(data).each(function(i){
+		  				var userlog = data[i];
+		   				html +="<tr>";
+		   				html +="<td>"+userlog.accessIp+"</td>";
+		   				
+		   				html +="<td>"+userlog.accessTime+"</td>";
+		   				html +="</tr>";
+		   			});
+		   			html +="</table>";
+    			}else{
+    				html="Error:"+json.msg;
+    			}
+    			$("#userlog").html(html);
+    		}, "json" );
+    	}
+    
     	function deleteUser(usercode, obj){
-			//	alert(obj.parentNode.innerHTML);
-    		$.get("user/delete/"+usercode, "" , function(data){
-    		//	if(data.error==0)
+    		var i=obj.parentNode.parentNode.rowIndex;
+    		$.get("user/delete/"+usercode, "" , function(ret){
+    			if(ret.error==0 || ret.error==200)
+    				obj.parentNode.parentNode.parentNode.deleteRow(i);
     		}, "json" );
     	}
     </script>

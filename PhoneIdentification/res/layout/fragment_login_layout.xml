@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- listview的item选项 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:example="http://schemas.android.com/apk/res/com.cxf.PhoneIdentification"
+    style="@style/DefaultStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_logo"
+        android:cropToPadding="true"
+        android:maxHeight="120dp"
+        android:maxWidth="120dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_lc" />
+    <!-- 标题 -->
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_top"
+        android:gravity="center"
+        android:text="@string/user_login"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold" >
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <!-- 回显登录的结果 -->
+
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_content_small" />
+        <!-- 登录名 -->
+
+        <com.cxf.view.AdvancedAutoCompleteTextView
+            android:id="@+id/login_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editor_hight"
+            android:layout_below="@id/msg"
+            example:my_hint="@string/name" />
+        <!-- 密码 -->
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editor_hight"
+            android:layout_alignLeft="@id/login_name"
+            android:layout_below="@id/login_name"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_bg"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:paddingBottom="0dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_content_small" />
+
+        <com.cxf.view.ServerAdvancedAutoCompleteTextView
+            android:id="@+id/server"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editor_hight"
+            android:layout_below="@id/password"
+            android:layout_marginTop="20dp"
+            example:my_hint="@string/server" />
+
+        <Button
+            android:id="@+id/auto_login"
+            style="@style/button_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/server"
+            android:layout_marginBottom="@dimen/button_button_margin_bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/button_editor_margin"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:padding="@dimen/button_pading"
+            android:text="@string/open_autologin"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_content" />
+
+        <Button
+            android:id="@+id/register"
+            style="@style/button_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/auto_login"
+            android:layout_marginBottom="@dimen/button_button_margin_bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/button_button_margin_top"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:padding="@dimen/button_pading"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_content" />
+    </RelativeLayout>
+
+</RelativeLayout>

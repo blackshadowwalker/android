@@ -1,5 +1,8 @@
 package com.services;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,12 +16,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
 
 import com.listener.UserListenerTimer;
+import com.services.base.DatabaseTool;
 import com.services.base.ErrorUtil;
 
 public class UserList {
@@ -27,12 +33,41 @@ public class UserList {
 	private static Map<String, UserForm> usermap = new HashMap<String, UserForm>();
 	private static Map<String, UserForm> oldUsermap = new HashMap<String, UserForm>();
 	
+	private static Connection con=null;
+	private static String sql = "";
+	private static PreparedStatement pstm = null;
+	
 	public UserList(){}
 	
 	public static boolean checkUser(String ssid){
 		UserForm user = usermap.get(ssid);
 		if(user!=null){
 			user.setLastAccessTime(System.currentTimeMillis());
+			return true;
+		}
+		return false;
+	}
+	public static boolean checkUser(String ssid, HttpServletRequest request){
+		UserForm user = usermap.get(ssid);
+		if(user!=null){
+			user.setLastAccessTime(System.currentTimeMillis());
+			if(request!=null){
+				if(!request.getRemoteAddr().equals(user.getLastAccessIp())){
+					con = DatabaseTool.getConnection();
+					if(con!=null){
+						sql = "insert into  t_a_accessLog(usercode, accessIp) values(?, ?)";
+						try {
+							pstm = con.prepareStatement(sql);
+							pstm.setString(1, user.getUsercode());
+							pstm.setString(2, request.getRemoteAddr());
+							pstm.executeUpdate();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+					user.setLastAccessIp(request.getRemoteAddr());
+				}
+			}
 			return true;
 		}
 		return false;
@@ -69,9 +104,10 @@ public class UserList {
 			json.put("Ssid", user.getSSID());
 			json.put("UserCode", user.getUsercode());
 			json.put("UserName", user.getUsername());
-			json.put("LastAccessTime", dFormat.format(new Date(user.getLastAccessTime())));
-			json.put("LoginTime", dFormat.format(new Date(user.getLastLoginTime())));
-			json.put("Ip", user.getIP());
+			json.put("LastAccessTime", dFormat.format(new Date(user.getLoginTime())));
+			json.put("LastAccessIp", user.getLastAccessIp());
+			json.put("LoginTime", dFormat.format(new Date(user.getLoginTime())));
+			json.put("LoginIp", user.getIP());
 			json.put("LastLoginTime", dFormat.format(new Date(user.getLastLoginTime())));
 			json.put("LastLoginIp", user.getLastIP());
 			jsonEmployeeArray.add(json);

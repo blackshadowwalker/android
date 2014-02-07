@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 黑色 -->
+    <color name="radiobg_press">#000000</color>
+    <!-- 浅黑色 -->
+    <color name="radiobg_normal">#555555</color>
+    <color name="radiobg_selected">#000000</color>
+    <!-- 灰色 -->
+    <color name="bg">#e7e7e7</color>
+    <!-- 橙色 -->
+    <color name="content_bg">#ff7200</color>
+    <!-- 橙色 -->
+    <color name="content_press">#ff7100</color>
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+    <!-- 半透明 -->
+    <color name="semitransparent">#b0000000</color>
+    <!-- 红色 -->
+    <color name="red">#CC3300</color>
+</resources>

@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Insert title here</title>
+<title>导航菜单</title>
+
 </head>
 <body>
 
@@ -26,10 +27,11 @@
               <ul class="nav">
                 <li class="active"><a href="home">Home</a></li>
                 <li><a href="#about">Announcements</a></li>
-                <li><a href="#about">Wiki</a></li>
+                <li><a href="wiki.jsp">Wiki</a></li>
                 <li><a href="download">Download</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact Us</a></li>
+                <li><a href="navigation.jsp">More</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
               </ul>
               <ul class="nav pull-right">
@@ -53,9 +55,12 @@
                     <li><a href="login.jsp" data-toggle="modal" data-target="#login" >Register</a></li>
                     <li><a href="user"  >User</a></li>
                     <li><a href="apk"  >apk</a></li>
-                    <li><a href="user/list"  >List User</a></li>
+                    <li><a href="modules/user/list.jsp"  >List User</a></li>
                     <li><a href="online.jsp"  >Online User</a></li>
                     <li class="divider"></li>
+                    <li><a href="chart/xfchart"  >消防统计分析</a></li>
+                    <li><a href="chart/clchart"  >卡口统计分析</a></li>
+                    <li><a href="Service"  >Service</a></li>
                     <li><a href="#">Forgot Password?</a></li>
                   </ul>
                 </li>

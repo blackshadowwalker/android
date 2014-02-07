@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Safe_android</string>
+    <string name="app_name">信帧核工业安防系统</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="logo">logo</string>
@@ -9,20 +9,31 @@
     <string name="content_title">信息修改提醒</string>
     <string name="home">home</string>
     <string name="login">登录</string>
-    <string name="name">用户名：</string>
-    <string name="password">密码：</string>
-    
+    <string name="login_offline">离线登录</string>
+    <string name="enter_history">直接进入</string>
+    <string name="name">用户名</string>
+    <string name="old_password">旧密码</string>
+    <string name="new_password">新密码</string>
+    <string name="comfirm_password">确认密码</string>
+     <string name="set_password">请输入新密码</string>
+    <string name="user_info">用户信息</string>
+    <string name="password">密码</string>
+    <string name="login_state">登录状态</string>
+    <string name="receive_state">接收状态</string>
+    <string name="changePass">修改密码</string>
+    <string name="online">在线</string>
+    <string name="offline">离线登录</string>
+    <string name="unlogin">未登录</string>
+    <string name="receiving">正在接收数据</string>
+    <string name="stop_receive">不接收数据</string>
+    <string name="none_user">当前用户为空</string>
+    <string name="net_unconnection">网络连接已断开</string>
+    <string name="service">服务器</string>
     <!-- 分页刷新 -->
-    <string name="pull_to_refresh">下拉可以刷新</string>  
-    <string name="release_to_refresh">释放立即刷新</string>  
-    <string name="refreshing">正在刷新…</string>  
-    <string name="not_updated_yet">暂未更新过</string>  
-    <string name="updated_at">上次更新于%1$s前</string>  
-    <string name="updated_just_now">刚刚更新</string>  
-    <string name="time_error">时间有问题</string>
+    <string name="refreshing">正在刷新…</string>
 
     <!-- 系统设置 -->
-    <string name="save_login_info">保存登录信息</string>
+    <string name="auto_login_info">下一次自动登录</string>
     <string name="recieve_infos">接收消息推送</string>
     <string name="sys_infos">系统设置</string>
     <string name="sys_sound_prompt">声音提醒</string>

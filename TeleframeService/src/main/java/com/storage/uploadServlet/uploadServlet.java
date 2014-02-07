@@ -56,6 +56,8 @@ public class uploadServlet extends HttpServlet{
 		String uploadroot = request.getParameter("dirroot");
 		String savePath = request.getParameter("dir");
 		String saveName = request.getParameter("saveName");
+		String backupOldFile = request.getParameter("backup");//true/false
+		System.out.println("backupOldFile="+backupOldFile);
 		String fileTypes = request.getParameter("fileTypes");
 		String fileNum = request.getParameter("fileNum");
 
@@ -98,6 +100,7 @@ public class uploadServlet extends HttpServlet{
 		int fileuploadedSum = 0;
 		StringBuffer fileNames = new StringBuffer();
 		SimpleDateFormat timeFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"); 
+		SimpleDateFormat fileNameTimeFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS"); 
 		boolean uploaded = false;
 		if(ServletFileUpload.isMultipartContent(request)){
 			try {    
@@ -116,12 +119,19 @@ public class uploadServlet extends HttpServlet{
 				System.out.println("fileListSize="+fileList.size());
 				while (it.hasNext()) {    
 					FileItem  item = (FileItem )it.next();  
+					
 					// 获得文件名及路径       
 					String fileName = item.getName();    
 					if (fileName != null && !fileName.equals("")) {    
-						
+
 						JSONObject json = new JSONObject();
 						json.element("error", ErrorUtil.FAILED);
+						
+						if(item.getSize()<=0){
+							json.element("filename", firstFileName);
+							json.element("msg", "File["+firstFileName+"] size=0.");
+							continue;
+						}
 						
 						SimpleDateFormat curTime= new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 						Date dateTime = new Date();
@@ -152,6 +162,14 @@ public class uploadServlet extends HttpServlet{
 						else
 							fileFullName = newfileName + "_" + fileNum + "_" + fileuploadedSum + formatName;
 						fileFullPath = uploadroot + "/" + savePath  + "/" + fileFullName;//文件存放真实地址    
+						
+						String oldFileFullPath  = uploadroot + "/" + savePath  + "/" +saveName;
+						if(backupOldFile!=null && backupOldFile.equals("true")){
+							File oldFie = new File(oldFileFullPath);
+							if(oldFie.exists()){
+								oldFie.renameTo(new File(oldFileFullPath+".bak."+fileNameTimeFormat.format((new Date()))));
+							}
+						}
 						
 						json.element("uploadroot", uploadroot);
 						json.element("savePath", savePath);

@@ -23,9 +23,9 @@ import com.services.base.ErrorUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class userServlet extends HttpServlet  {
+public class UserServlet extends HttpServlet  {
 
-	static Logger logger =  Logger.getLogger(userServlet.class);
+	static Logger logger =  Logger.getLogger(UserServlet.class);
 	static ServletConfig config = null;
 	private static String userTableName = "t_a_user"; 
 	
@@ -67,28 +67,31 @@ public class userServlet extends HttpServlet  {
 		//	pstm.execute();
 			pstm = conn.prepareStatement("select * from "+userTableName);
 			ResultSet rs = pstm.executeQuery();
-			if(rs==null){
-				jsonmsg.element("error", ErrorUtil.DATA_NULL);
-				jsonmsg.element("msg", "Sorry, there's no user!");
-			}else{
-				while(rs!=null && rs.next()){
-					JSONObject json = new JSONObject();
-					json.put("id", rs.getLong("id"));
-					json.put("usercode", rs.getString("usercode"));
-					json.put("username", rs.getString("username"));
-					json.put("password", rs.getString("password")); // rs.getString("password")
-					json.put("group", rs.getString("group"));
-					json.put("photo", rs.getString("photo"));
-					json.put("status",rs.getString("status"));
-					jsonEmployeeArray.add(json);
-				}
-				rs.close();
+			
+			while(rs!=null && rs.next()){
+				JSONObject json = new JSONObject();
+				json.put("id", rs.getLong("id"));
+				json.put("usercode", rs.getString("usercode"));
+				json.put("username", rs.getString("username"));
+				json.put("password", rs.getString("password")); // rs.getString("password")
+				json.put("group", rs.getString("group"));
+				json.put("photo", rs.getString("photo"));
+				json.put("status",rs.getString("status"));
+				jsonEmployeeArray.add(json);
+			}
+			rs.close();
+			pstm.close();
+			conn.close();
+
+			if(jsonEmployeeArray.size()>0){
 				jsonmsg.element("error", ErrorUtil.OK);
 				jsonmsg.element("msg", "There's no error.");
 				jsonmsg.element("data", jsonEmployeeArray.toString());
+			}else{
+				jsonmsg.element("error", ErrorUtil.DATA_NULL);
+				jsonmsg.element("msg", "Sorry, there's no user!");
 			}
-			pstm.close();
-			conn.close();
+
 		} catch (SQLException e) {
 			jsonmsg.element("error", ErrorUtil.SQLEXCEPTION);
 			jsonmsg.element("msg", "SQLEXCEPTION");
@@ -235,13 +238,16 @@ public class userServlet extends HttpServlet  {
 			resp.setCharacterEncoding("UTF-8");
 			resp.setContentType("text/html; charset=utf-8");
 		//	resp.setHeader("Content-Disposition", "attachment;filename=aaa.doc");
+			String listuser = "";
 			try {
-				req.setAttribute("ret", this.list(sc));
+				listuser  = this.list(sc);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			req.getRequestDispatcher("/modules/user/list.jsp").forward(req, resp);
+			req.setAttribute("ret", listuser);
+			out.write(listuser);
+			out.close();
+			//req.getRequestDispatcher("/modules/user/list.jsp").forward(req, resp);
 		}else if(pathInfo.startsWith("/add")){
 			String ret = this.add(sc, req);
 			out.write(ret);

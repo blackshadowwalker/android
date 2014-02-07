@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#e7e4df"
     android:scrollbars="none" >
 
     <LinearLayout
@@ -36,7 +36,7 @@
                 android:layout_below="@id/setting" >
 
                 <TextView
-                    android:id="@+id/car_opt1"
+                    android:id="@+id/alarm_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12.0dip"
@@ -47,14 +47,16 @@
                     android:textColor="#ff333333"
                     android:textSize="12.0dip" />
 
-                <CheckBox
-                    android:id="@+id/opt1_car_in"
+                <ImageButton
+                    android:id="@+id/opt1_level"
                     style="@style/CustomCheckboxTheme"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_alignBottom="@id/car_opt1"
+                    android:layout_alignBottom="@id/alarm_level"
                     android:layout_alignParentRight="true"
-                    android:layout_alignTop="@id/car_opt1"
+                    android:layout_alignTop="@id/alarm_level"
+                    android:contentDescription="@string/level"
+                    android:src="@drawable/item_logo"
                     android:layout_marginRight="12.0dip" />
             </RelativeLayout>
 

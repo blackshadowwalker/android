@@ -19,6 +19,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.jws.HandlerChain;
+import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -44,7 +45,7 @@ import com.services.base.ErrorUtil;
 @WebService(targetNamespace="http://webservice.teleframe.com", serviceName="UserEndpointService", 
 			portName="UserEndpoinInstance", name ="UserEndpoint" )  
 @SOAPBinding(style = Style.RPC)
-//@HandlerChain(file="handler-chain.xml")    // ָ��SOAP handler
+//@HandlerChain(file="handler-chain.xml")    //SOAP handler
 public class UserEndpointImpl extends BaseException implements  UserEndpoint {
 	
 	@Resource
@@ -64,7 +65,8 @@ public class UserEndpointImpl extends BaseException implements  UserEndpoint {
 	 * 5 : SQLException
 	 * 9 : connection is null
 	 * */
-	public String  checkUser(@WebParam(name = "username")String username, 
+	@WebMethod(operationName = "checkUser")
+	public String  login(@WebParam(name = "username")String username, 
 			@WebParam(name = "password")String password) {
 		
 		JSONArray jsonEmployeeArray = new JSONArray(); 
@@ -106,11 +108,19 @@ public class UserEndpointImpl extends BaseException implements  UserEndpoint {
 					user.setPassword(rs.getString("password"));
 					user.setStatus(rs.getLong("status"));
 					user.setSSID(session.getId());
-					user.setLastAccessTime(System.currentTimeMillis());
 					user.setLoginTime(System.currentTimeMillis());
+					user.setLastAccessTime(user.getLoginTime());
 					user.setIP(ip);
+					user.setLastAccessIp(ip);
 					UserList.addUser(session.getId(), user);
 					jsonmsg.element("user", user.getUsercode()+"/"+user.getUsername());
+					jsonmsg.element("username", user.getUsername());
+					
+					sql = "insert into  t_a_accessLog(usercode, accessIp, beLogin) values(?, ?, 1)";
+					pstm = con.prepareStatement(sql);
+					pstm.setString(1, user.getUsercode());
+					pstm.setString(2, request.getRemoteAddr());
+					pstm.executeUpdate();
 				}
 				else{
 					jsonmsg.element("error", 2);
@@ -126,7 +136,7 @@ public class UserEndpointImpl extends BaseException implements  UserEndpoint {
 			pstm.close();
 			
 		} catch (SQLException e) {
-			jsonmsg.element("error", 5);
+			jsonmsg.element("error", ErrorUtil.SQLEXCEPTION);
 			jsonmsg.element("msg", "SQLException="+e.getMessage());
 			jsonmsg.element("data", "");
 			e.printStackTrace();
@@ -192,7 +202,7 @@ public class UserEndpointImpl extends BaseException implements  UserEndpoint {
 				while(rs!=null && rs.next() ){
 					JSONObject jsonEmployee = new JSONObject();  
 					jsonEmployee.put("id", rs.getLong("id"));
-					jsonEmployee.put("usercode", rs.getString("username"));
+					jsonEmployee.put("usercode", rs.getString("usercode"));
 					jsonEmployee.put("username", rs.getString("username"));
 					jsonEmployee.put("password", "******");//rs.getString("password")
 					jsonEmployee.put("status", rs.getLong("status"));
@@ -209,7 +219,7 @@ public class UserEndpointImpl extends BaseException implements  UserEndpoint {
 			pstm.close();
 			
 		} catch (SQLException e) {
-			jsonmsg.put("error", "5");
+			jsonmsg.put("error", ErrorUtil.SQLEXCEPTION);
 			jsonmsg.put("msg", "SQLException="+e.getMessage());
 			e.printStackTrace();
 		}
@@ -220,5 +230,51 @@ public class UserEndpointImpl extends BaseException implements  UserEndpoint {
 		UserList.removeUser(ssid);
 		return "";
 	}
+	
+	public String modifyPassword(
+			@WebParam(name = "ssid")String ssid, 
+			@WebParam(name = "oldpwd")String oldpwd, 
+			@WebParam(name = "newpwd")String newpwd)
+	{
+		JSONArray jsonEmployeeArray = new JSONArray(); 
+		JSONObject jsonmsg = new JSONObject();
+		
+		if(UserList.checkUser(ssid)==false){
+			jsonmsg.put("error", "-1");
+			jsonmsg.put("msg", "Please Login.");
+			return jsonmsg.toString();
+		}
+		
+		con = DatabaseTool.getConnection();
+		if(con==null){
+			jsonmsg.put("error", "9");
+			jsonmsg.put("msg", "connect is null");
+		//	jsonmsg.put(jsonEmployeeArray);
+			return jsonmsg.toString();
+		}
+		UserForm user = UserList.getUser(ssid);
+		sql = "update t_a_user set password=? where usercode=? and password=? ";
+		System.out.println("modifyPassword @ "+sql +" @user:"+user.getUsercode()+"["+user.getUsername()+"]");
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, newpwd);
+			pstm.setString(2, user.getUsercode());
+			pstm.setString(3, oldpwd);
+			int lines = pstm.executeUpdate();
+			if(lines>0){
+				jsonmsg.put("error", ErrorUtil.OK);
+				jsonmsg.put("msg", " Modify Password Success.[lines="+lines+"] sql="+sql);
+			}else{
+				jsonmsg.put("error", ErrorUtil.FAILED);
+				jsonmsg.put("msg", " Modify Password Failed.");
+			}
+		} catch (SQLException e) {
+			jsonmsg.put("error", ErrorUtil.SQLEXCEPTION);
+			jsonmsg.put("msg", "SQLException="+e.getMessage());
+			e.printStackTrace();
+		}
+		return jsonmsg.toString();
+	}
+
 
 }

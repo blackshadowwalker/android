@@ -39,10 +39,11 @@ import com.services.base.ErrorUtil;
 import com.services.base.baseForm;
 
 @WebService(targetNamespace="http://webservice.teleframe.com", serviceName="ITSMonitorEndpointService", 
-		portName="ITSMonitorEndpoinInstance", name ="ITSMonitorEndpoint", 
-		wsdlLocation = "wsdl/ITSMonitorEndpoint.wsdl")  
+		portName="ITSMonitorEndpoinInstance", name ="ITSMonitorEndpoint"
+	//	,wsdlLocation = "WEB-INF/wsdl/ITSMonitorEndpoint.wsdl"
+			)  
 		@SOAPBinding(style = Style.RPC)
-		public class ITSMonitorEndpointImpl extends BaseBean implements ITSMonitorEndpoint  {
+public class ITSMonitorEndpointImpl extends BaseBean implements ITSMonitorEndpoint  {
 
 	@Resource
 	WebServiceContext wsctx;
@@ -51,7 +52,7 @@ import com.services.base.baseForm;
 	PreparedStatement pstm = null;
 	Connection con = null;
 	ResultSet rs = null;
-	private static String DataTableName = "kk_20130508_165150";
+	private static String DataTableName = "kk_event";
 	private static String MsgTableName = "t_a_kk_msg";
 
 	public ITSMonitorEndpointImpl(){
@@ -129,6 +130,7 @@ import com.services.base.baseForm;
 
 		MessageContext context = wsctx.getMessageContext();
 		HttpServletRequest request = (HttpServletRequest)context.get(MessageContext.SERVLET_REQUEST); 
+		
 		HttpSession session = request.getSession();
 		String path = request.getContextPath();
 		String baseServer = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
@@ -139,7 +141,7 @@ import com.services.base.baseForm;
 			itsImageRoot = path;
 
 		UserForm user = UserList.getUser(ssid);
-		if(UserList.checkUser(ssid)==false ){
+		if(UserList.checkUser(ssid, request)==false ){
 			jsonmsg.put("error", ErrorUtil.SSID_NULL);
 			jsonmsg.put("msg", "Please Login @checkUser.");
 			return jsonmsg.toString();
@@ -166,8 +168,8 @@ import com.services.base.baseForm;
 			pstm = con.prepareStatement(sql);
 			pstm.setLong(1, user.getId());
 			rs = pstm.executeQuery();
+			String msgids = "";
 			if(rs!=null){
-				String msgids = "";
 				while(rs!=null && rs.next()){
 					msgids += rs.getLong("msgid")+",";
 				}
@@ -182,7 +184,7 @@ import com.services.base.baseForm;
 						sql += " and dir="+dir;
 					}
 					System.out.println("DataTableName @ "+sql);
-					//	jsonmsg.put("sql", sql+msgid);
+					jsonmsg.put("sql", sql+msgids);
 					pstm = con.prepareStatement(sql);
 
 					rs = pstm.executeQuery();
@@ -211,6 +213,7 @@ import com.services.base.baseForm;
 					}
 				}else{
 					jsonmsg.put("error", ErrorUtil.DATA_NULL);
+					jsonmsg.put("sql", sql+msgids);
 					jsonmsg.put("msg", MsgTableName+" is null @ "+MsgTableName+"  user="+user.getUsercode());
 				}
 			}
@@ -234,8 +237,6 @@ import com.services.base.baseForm;
 	{
 		return this.getWarningInfo(ssid, fromId, reqLines, dir);
 	}
-
-
 
 	/*
 	 * msgids: json format: [{"id",101},{"id",102},{"id",103}]

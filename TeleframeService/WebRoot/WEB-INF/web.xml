@@ -10,6 +10,15 @@
 		<param-value>Teleframe Web Service</param-value>
 	</context-param>
 	
+	<context-param>
+		<param-name>qrServicePath</param-name>
+		<param-value>/qrimage</param-value>
+	</context-param>
+	<context-param>
+		<param-name>logoPath</param-name>
+		<param-value>logo/logo.jpg</param-value>
+	</context-param>
+	
 	
 	<!--  e.g : _small.jpg  -->
 	<context-param>
@@ -160,6 +169,24 @@
 	</servlet-mapping>
 	
 	<servlet>
+	    <servlet-name>userlog</servlet-name>
+	    <servlet-class>com.services.UserLog</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>userlog</servlet-name>
+	    <url-pattern>/userlog</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>fileservlet</servlet-name>
+	    <servlet-class>com.servlet.FileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>fileservlet</servlet-name>
+	    <url-pattern>/file/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 	    <servlet-name>homeServlet</servlet-name>
 	    <jsp-file>/welcome.jsp</jsp-file>
 	</servlet>
@@ -170,7 +197,7 @@
 	
 	<servlet>
 	    <servlet-name>userServlet</servlet-name>
-	    <servlet-class>com.servlet.userServlet</servlet-class>
+	    <servlet-class>com.servlet.UserServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>userServlet</servlet-name>
@@ -181,10 +208,61 @@
 	    <servlet-name>fileupload</servlet-name>
 	    <servlet-class>com.storage.uploadServlet.uploadServlet</servlet-class>
 	</servlet>
+  <servlet>
+    <servlet-name>Clchart</servlet-name>
+    <servlet-class>chart.Clchart</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Xfchart</servlet-name>
+    <servlet-class>chart.Xfchart</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Clgetdata</servlet-name>
+    <servlet-class>chart.Clgetdata</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Xfgetdata</servlet-name>
+    <servlet-class>chart.Xfgetdata</servlet-class>
+  </servlet>
+	<servlet>
+    	<description>qr code service</description>
+    	<servlet-name>qrservice</servlet-name>
+    	<servlet-class>com.services.QRImageService</servlet-class>
+	</servlet>
+
+
+
 	<servlet-mapping>
 	    <servlet-name>fileupload</servlet-name>
 	    <url-pattern>/upload.do</url-pattern>
+	    <url-pattern>/upload</url-pattern>
 	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Clchart</servlet-name>
+    <url-pattern>/chart/clchart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Xfchart</servlet-name>
+    <url-pattern>/chart/xfchart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Clgetdata</servlet-name>
+    <url-pattern>/chart/clgetdata</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Xfgetdata</servlet-name>
+    <url-pattern>/chart/xfgetdata</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>qrservice</servlet-name>
+      <url-pattern>/qrservice</url-pattern>
+  </servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

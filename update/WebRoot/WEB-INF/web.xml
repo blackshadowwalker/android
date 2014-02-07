@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<context-param>
+		<param-name>dbUri</param-name>
+		<param-value>$database</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>baseFilter</filter-name>
+		<filter-class>com.base.BaseFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>baseFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>com.listener.ContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<description>qr code service</description>
+		<servlet-name>qrservice</servlet-name>
+		<servlet-class>com.base.qr.QRImageService</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>fileupload</servlet-name>
+		<servlet-class>com.storage.uploadServlet.uploadServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>apkServlet</servlet-name>
+		<jsp-file>/modules/file/upload/apk.jsp</jsp-file>
+	</servlet>
+
+	<servlet>
+		<servlet-name>FileServlet</servlet-name>
+		<servlet-class>com.servlet.FileServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>updateServlet</servlet-name>
+		<servlet-class>com.servlet.UpdateServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>logServlet</servlet-name>
+		<jsp-file>/modules/file/upload/update_log.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>logServlet</servlet-name>
+		<url-pattern>/log</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>updateServlet</servlet-name>
+		<url-pattern>/update/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FileServlet</servlet-name>
+		<url-pattern>/FileServlet/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>apkServlet</servlet-name>
+		<url-pattern>/apk</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>fileupload</servlet-name>
+		<url-pattern>/upload.do</url-pattern>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>qrservice</servlet-name>
+		<url-pattern>/qrservice</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
